@@ -131,16 +131,15 @@ public class UIManager : MonoBehaviour
         Camera.main.orthographicSize = startOrthographicSize;
     }
 
-    public void TouchInputMode(bool touchInput)
+    public void MouseInput()
     {
-        GetComponent<MouseControl>().enabled = !touchInput;
-        GetComponent<TouchControl>().enabled = touchInput;
+        GetComponent<MouseControl>().enabled = true;
+        GetComponent<TouchControl>().enabled = false;
 
-        mouseFunctionText.gameObject.SetActive(!touchInput);
-        touchFunctionText.gameObject.SetActive(touchInput);
+        mouseFunctionText.gameObject.SetActive(true);
+        touchFunctionText.gameObject.SetActive(false);
 
-        panelTitleText.text = string.Concat(touchInput ? "Tap" : "Click",
-            " on brain to find the following areas:");
+        panelTitleText.text = "Click on brain to find the following areas:";
     }
 
     public void Exit()
