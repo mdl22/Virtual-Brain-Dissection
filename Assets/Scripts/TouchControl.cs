@@ -13,6 +13,7 @@ public class TouchControl : MonoBehaviour
     Vector3 startCameraPosition;
     float startOrthographicSize;
     float lastSeparation;
+    bool inputDetected;
 
     void Start()
     {
@@ -22,9 +23,10 @@ public class TouchControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (!inputDetected && Input.touchCount > 0)
         {
-            GetComponent<UIManager>().MouseInputMode(false);
+            GetComponent<UIManager>().TouchInputMode(true);
+            inputDetected = true;
         }
 
         // touch control only available when contol panel is open and finger not over a button

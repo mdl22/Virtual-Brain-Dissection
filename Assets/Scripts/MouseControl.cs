@@ -15,6 +15,7 @@ public class MouseControl : MonoBehaviour
 
     float startOrthographicSize;
     float lastSeparation;
+    bool inputDetected;
 
     void Start()
     {
@@ -23,9 +24,10 @@ public class MouseControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!inputDetected && Input.GetMouseButton(0))
         {
-            GetComponent<UIManager>().MouseInputMode(true);
+            GetComponent<UIManager>().TouchInputMode(false);
+            inputDetected = true;
         }
 
         // mouse control only available when contol panel open and mouse not over a button
