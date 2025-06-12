@@ -22,6 +22,11 @@ public class TouchControl : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            GetComponent<UIManager>().MouseInput(true);
+        }
+
         // touch control only available when contol panel is open and finger not over a button
         if (controlsPanel.gameObject.activeSelf && !ButtonDetector.isPointerOverButton)
         {

@@ -23,9 +23,9 @@ public class MouseControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount > 0)
         {
-            GetComponent<UIManager>().MouseInput();
+            GetComponent<UIManager>().MouseInput(false);
         }
 
         // mouse control only available when contol panel open and mouse not over a button

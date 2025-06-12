@@ -41,6 +41,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        GetComponent<MouseControl>().enabled = false;
+
         backButton.GetComponent<Button>().onClick.AddListener(() =>
             { ResetAreasPanel(true); });
 
@@ -131,15 +133,16 @@ public class UIManager : MonoBehaviour
         Camera.main.orthographicSize = startOrthographicSize;
     }
 
-    public void MouseInput()
+    public void MouseInput(bool mouseDetected)
     {
-        GetComponent<MouseControl>().enabled = true;
-        GetComponent<TouchControl>().enabled = false;
+        GetComponent<MouseControl>().enabled = mouseDetected;
+        GetComponent<TouchControl>().enabled = !mouseDetected;
 
-        mouseFunctionText.gameObject.SetActive(true);
-        touchFunctionText.gameObject.SetActive(false);
+        mouseFunctionText.gameObject.SetActive(mouseDetected);
+        touchFunctionText.gameObject.SetActive(!mouseDetected);
 
-        panelTitleText.text = "Click on brain to find the following areas:";
+        panelTitleText.text = string.Concat(mouseDetected ? "Click" : "Tap",
+            " on brain to find the following areas:");
     }
 
     public void Exit()
